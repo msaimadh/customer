@@ -39,7 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
 			throw new AuthenticationFailedException("Username password doesnot match");
 		}
 		throw new CustomerNotFoundException(
-				"Auht failed!! Customer not found in database with id" + customer.getCustomerId());
+				"Authentication failed Customer not found in database with id=" + customer.getCustomerId());
 	}
 
 	@Override
