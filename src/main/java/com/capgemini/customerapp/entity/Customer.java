@@ -11,7 +11,7 @@ public class Customer {
 	@Id
 	private int customerId;
 	private String customerName;
-	@Column(unique = true)
+	@Column(unique = true) //doesn't allow duplicates in database
 	private String customerEmail;
 	private String customerAddress;
 	@Column(name = "customer_password")

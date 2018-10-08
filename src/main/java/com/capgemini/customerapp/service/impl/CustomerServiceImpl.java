@@ -51,10 +51,10 @@ public class CustomerServiceImpl implements CustomerService {
 		throw new CustomerNotFoundException("Search failed!! Customer not found with id " + customerId);
 	}
 
-	@Override
+/*	@Override
 	public Customer getCustomerByEmail(String customerEmail) throws CustomerNotFoundException {
 		return null;
-	}
+	}*/
 
 	@Override
 	public List<Customer> getAllCustomers() {

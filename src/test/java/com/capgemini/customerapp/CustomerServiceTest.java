@@ -39,14 +39,14 @@ public class CustomerServiceTest {
 
 	@Test
 	public void testAuthenticateCustomer() throws Exception {
-		Customer customer = new Customer(123456, "Nikhil", "nikhilrayapat@gmail.com", "Airoli, Mumbai", "18");
+		Customer customer = new Customer(1111, "madhuri", "ma@gmail.com", "hyd", "ma");
 		when(customerRepository.findById(customer.getCustomerId())).thenReturn(Optional.of(customer));
 		assertEquals(customerService.authentication(customer), customer);
 	}
 
 	@Test
 	public void testEditCustomer() throws Exception {
-		Customer customer = new Customer(12345, "Nikhil", "nikhilrayapat@gmail.com", "Airoli, Mumbai", "18");
+		Customer customer = new Customer(1111, "madhuri", "ma@gmail.com", "hyd", "ma");
 		when(customerRepository.findById(customer.getCustomerId())).thenReturn(Optional.of(customer));
 		when(customerRepository.save(customer)).thenReturn(customer);
 		assertEquals(customerService.editCustomer(customer), customer);
@@ -55,15 +55,15 @@ public class CustomerServiceTest {
 
 	@Test
 	public void testGetCustomer() throws Exception {
-		Customer customer = new Customer(123456, "Nikhil", "nikhilrayapat@gmail.com", "Airoli, Mumbai", "18");
+		Customer customer = new Customer(1111, "madhuri", "ma@gmail.com", "hyd", "ma");
 		when(customerRepository.findById(customer.getCustomerId())).thenReturn(Optional.of(customer));
-		assertEquals(customerService.getCustomerById(123456), customer);
+		assertEquals(customerService.getCustomerById(1111), customer);
 	}
 
 	@Test
 	public void testGetAllCustomer() throws Exception {
 		List<Customer> customers = new ArrayList<>();
-		Customer customer = new Customer(123456, "Nikhil", "nikhilrayapat@gmail.com", "Airoli, Mumbai", "18");
+		Customer customer = new Customer(1111, "madhuri", "ma@gmail.com", "hyd", "ma");
 		customers.add(customer);
 		when(customerRepository.findAll()).thenReturn(customers);
 		assertEquals(customerService.getAllCustomers(), customers);
@@ -71,15 +71,15 @@ public class CustomerServiceTest {
 
 	@Test
 	public void testDeleteCustomer() throws Exception {
-		Customer customer = new Customer(123456, "Nikhil", "nikhilrayapat@gmail.com", "Airoli, Mumbai", "18");
-		when(customerRepository.findById(123456)).thenReturn(Optional.of(customer));
+		Customer customer = new Customer(1111, "madhuri", "ma@gmail.com", "hyd", "ma");
+		when(customerRepository.findById(1111)).thenReturn(Optional.of(customer));
 		customerService.deleteCustomer(customer);
 		verify(customerRepository, times(1)).delete(customer);
 	}
 
 	@Test
 	public void testAddCustomer() throws Exception {
-		Customer customer = new Customer(123458, "Nikhil", "nikhilrayapat@gmail.com", "Airoli, Mumbai", "18");
+		Customer customer = new Customer(1111, "madhuri", "ma@gmail.com", "hyd", "ma");
 		when(customerRepository.save(customer)).thenReturn(customer);
 		assertEquals(customerService.addCustomer(customer), customer);
 	}
