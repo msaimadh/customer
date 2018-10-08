@@ -50,7 +50,7 @@ public class CustomerControllerTest {
 		String content = "{\r\n" + "  \"customerId\": 1111,\r\n" + "  \"customerPassword\": \"ma\"\r\n" + "}";
 		Customer customer = new Customer(1111, "madhuri", "ma@gmail.com", "hyd", "ma");
 		when(customerService.authentication(Mockito.isA(Customer.class))).thenReturn(customer);
-		mockMvc.perform(post("/v1/auth").content(content).contentType(MediaType.APPLICATION_JSON_UTF8)
+		mockMvc.perform(post("/auth").content(content).contentType(MediaType.APPLICATION_JSON_UTF8)
 				.accept(MediaType.APPLICATION_JSON_UTF8)).andDo(print()).andExpect(jsonPath("$.customerEmail").exists())
 				.andExpect(jsonPath("$.customerEmail").value("ma@gmail.com"));
 		verify(customerService).authentication(Mockito.isA(Customer.class));
@@ -67,7 +67,7 @@ public class CustomerControllerTest {
 				"}";
 		Customer customer = new Customer(1111, "madhuri", "ma@gmail.com", "hyd", "ma");
 		when(customerService.editCustomer(Mockito.isA(Customer.class))).thenReturn(customer);
-		mockMvc.perform(put("/v1/customer").content(content).contentType(MediaType.APPLICATION_JSON_UTF8)
+		mockMvc.perform(put("/customer").content(content).contentType(MediaType.APPLICATION_JSON_UTF8)
 				.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(jsonPath("$.customerEmail").exists())
 				.andExpect(jsonPath("$.customerName").value("madhuri"));
 	}
@@ -83,7 +83,7 @@ public class CustomerControllerTest {
 				"}";
 		Customer customer = new Customer(1111, "madhuri", "ma@gmail.com", "hyd", "ma");
 		when(customerService.getCustomerById(1111)).thenReturn(customer);
-		mockMvc.perform(get("/v1/customer/1111").contentType(MediaType.APPLICATION_JSON_UTF8)
+		mockMvc.perform(get("/customer/1111").contentType(MediaType.APPLICATION_JSON_UTF8)
 				.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(jsonPath("$.customerEmail").exists())
 				.andExpect(jsonPath("$.customerName").value("madhuri"));
 	}
@@ -92,7 +92,7 @@ public class CustomerControllerTest {
 	public void testDeleteCustomer() throws Exception {
 		Customer customer = new Customer(1111, "madhuri", "ma@gmail.com", "hyd", "ma");
 		when(customerService.getCustomerById(1111)).thenReturn(customer);
-		mockMvc.perform(delete("/v1/customer/1111").contentType(MediaType.APPLICATION_JSON_UTF8)
+		mockMvc.perform(delete("/customer/1111").contentType(MediaType.APPLICATION_JSON_UTF8)
 				.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
 	}
 

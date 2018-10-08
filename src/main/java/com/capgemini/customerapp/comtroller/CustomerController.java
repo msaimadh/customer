@@ -27,39 +27,39 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 
-	@PostMapping("/v1/customer")
+	@PostMapping("/customer")
 	public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
 		logger.info("Created");
 		return new ResponseEntity<Customer>(customerService.addCustomer(customer), 
 				HttpStatus.CREATED);
 	}
 
-	@PostMapping("/v1/auth")
+	@PostMapping("/auth")
 	public ResponseEntity<Customer> authenticate(@RequestBody Customer customer) {
 		return new ResponseEntity<Customer>(customerService.authentication(customer),
 				HttpStatus.FOUND);
 	}
 
-	@PutMapping("/v1/customer")
+	@PutMapping("/customer")
 	public ResponseEntity<Customer> editCustomer(@RequestBody Customer customer) {
 		return new ResponseEntity<Customer>(customerService.editCustomer(customer), 
 				HttpStatus.OK);
 	}
 
-	@GetMapping("/v1/customer/{customerId}")
+	@GetMapping("/customer/{customerId}")
 	public ResponseEntity<Customer> getCustomerById(@PathVariable int customerId) {
 		return new ResponseEntity<Customer>(customerService.getCustomerById(customerId), 
 				HttpStatus.OK);
 	}
 
-	@DeleteMapping("/v1/customer/{customerId}")
+	@DeleteMapping("/customer/{customerId}")
 	public ResponseEntity<Customer> deleteCustomer(@PathVariable int customerId) {
 		Customer customer = customerService.getCustomerById(customerId);
 		customerService.deleteCustomer(customer);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@GetMapping("/v1/customers")
+	@GetMapping("/customers")
 	public @ResponseBody ResponseEntity<List<Customer>> getAllCustomer() {
 		return new ResponseEntity<List<Customer>>(customerService.getAllCustomers(), 
 				HttpStatus.OK);
